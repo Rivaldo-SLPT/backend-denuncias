@@ -26,6 +26,9 @@ let DenunciasService = class DenunciasService {
             },
         });
     }
+    async findByUser(userId) {
+        return this.prisma.complaint.findMany({ where: { userId } });
+    }
     findAll(filters) {
         const where = {};
         if (filters?.status)

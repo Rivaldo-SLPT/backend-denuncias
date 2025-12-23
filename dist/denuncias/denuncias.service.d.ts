@@ -15,6 +15,7 @@ export declare class DenunciasService {
         createdAt: Date;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    findByUser(userId: number): Promise<any[]>;
     findAll(filters?: {
         status?: string;
         category?: string;
