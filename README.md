@@ -1,3 +1,111 @@
+# Backend Denuncias
+
+Este proyecto es un backend desarrollado con NestJS y Prisma para la gestión de denuncias ciudadanas.
+
+## Características principales
+
+- Registro y autenticación de usuarios
+- Creación y gestión de denuncias
+- Subida de imágenes asociadas a denuncias
+- Filtros por estado y categoría
+- Estadísticas de denuncias
+
+## Estructura del proyecto
+
+- `src/` Código fuente principal
+  - `auth/` Módulo de autenticación
+  - `denuncias/` Módulo de denuncias
+  - `prisma/` Servicio de acceso a base de datos
+  - `users/` Módulo de usuarios
+- `prisma/` Archivos de migración y esquema de base de datos
+- `uploads/` Carpeta para imágenes subidas
+
+## Servicio de Denuncias (`DenunciasService`)
+
+El servicio [`DenunciasService`](src/denuncias/denuncias.service.ts) gestiona la lógica de negocio relacionada con las denuncias. Utiliza Prisma para interactuar con la base de datos.
+
+### Métodos principales
+
+- **create(createDenunciaDto, userId, imageUrl?)**  
+  Crea una nueva denuncia asociada a un usuario.  
+  - `createDenunciaDto`: Datos de la denuncia (título, descripción, categoría, lat, lng).
+  - `userId`: ID del usuario que realiza la denuncia.
+  - `imageUrl` (opcional): Ruta de la imagen asociada.
+
+- **findByUser(userId)**  
+  Devuelve todas las denuncias realizadas por un usuario específico.
+
+- **findAll(filters?)**  
+  Devuelve todas las denuncias, permitiendo filtrar por estado (`status`) y categoría (`category`).  
+  Incluye información básica del usuario.
+
+- **findOne(id)**  
+  Devuelve una denuncia específica por su ID, incluyendo información del usuario.
+
+- **updateStatus(id, status)**  
+  Actualiza el estado de una denuncia (por ejemplo: "Pending", "In Progress", "Resolved").
+
+- **getStats()**  
+  Devuelve estadísticas generales:
+  - Total de denuncias.
+  - Conteo por estado.
+  - Conteo por categoría.
+
+### Ejemplo de uso
+
+```ts
+import { DenunciasService } from './src/denuncias/denuncias.service';
+
+// Crear una denuncia
+denunciasService.create({
+  title: 'Bache en la calle',
+  description: 'Hay un bache grande',
+  category: 'Infraestructura',
+  lat: 10.0,
+  lng: 20.0,
+}, userId, '/uploads/imagen.jpg');
+
+// Obtener denuncias por usuario
+denunciasService.findByUser(userId);
+
+// Obtener todas las denuncias filtradas
+denunciasService.findAll({ status: 'Pending', category: 'Infraestructura' });
+
+// Actualizar estado de una denuncia
+denunciasService.updateStatus(1, 'In Progress');
+
+// Obtener estadísticas
+denunciasService.getStats();
+```
+
+Para más detalles, consulta el archivo [`src/denuncias/denuncias.service.ts`](src/denuncias/denuncias.service.ts).
+
+## Instalación
+
+1. Clona el repositorio
+2. Instala dependencias:
+   ```bash
+   npm install
+   ```
+3. Configura la base de datos en `prisma/schema.prisma` y ejecuta las migraciones:
+   ```bash
+   npx prisma migrate dev
+   ```
+4. Inicia el servidor:
+   ```bash
+   npm run start:dev
+   ```
+
+## Pruebas
+
+Ejecuta las pruebas con:
+```bash
+npm run test
+```
+
+## Licencia
+
+MIT
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
