@@ -19,6 +19,9 @@ export class DenunciasService {
       },
     });
   }
+  async findByUser(userId: number): Promise<any[]> {
+    return this.prisma.complaint.findMany({ where: { userId } });
+  }
 
   findAll(filters?: { status?: string; category?: string }) {
     const where: any = {};
