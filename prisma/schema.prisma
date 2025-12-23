@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  role      String   @default("citizen") // 'citizen' | 'authority'
+  avatar    String?
+  complaints Complaint[]
+}
+
+model Complaint {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  status      String   @default("Pending") // Pending, In Progress, Resolved
+  lat         Float?
+  lng         Float?
+  imageUrl    String?  @map("image_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  userId      Int      @map("user_id")
+  user        User     @relation(fields: [userId], references: [id])
+}
