@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access */
 import {
   Controller,
   Get,
@@ -34,6 +34,11 @@ export class DenunciasController {
     return this.denunciasService.findAll({ status, category });
   }
 
+  @Get('usuario/:userId')
+  findByUser(@Param('userId', ParseIntPipe) userId: number) {
+    return this.denunciasService.findByUser(userId);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Post()
   @UseInterceptors(
@@ -61,6 +66,11 @@ export class DenunciasController {
       req.user.userId,
       imageUrl,
     );
+  }
+
+  @Get('stats/dashboard')
+  getStats() {
+    return this.denunciasService.getStats();
   }
 
   @Get(':id')
