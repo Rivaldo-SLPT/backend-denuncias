@@ -21,6 +21,7 @@ export declare class DenunciasController {
         createdAt: Date;
         userId: number;
     })[]>;
+    findByUser(userId: number): Promise<any[]>;
     create(createDenunciaDto: CreateDenunciaDto, req: any, file: Express.Multer.File): import(".prisma/client").Prisma.Prisma__ComplaintClient<{
         id: number;
         title: string;
@@ -33,6 +34,11 @@ export declare class DenunciasController {
         createdAt: Date;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    getStats(): Promise<{
+        total: number;
+        byStatus: {};
+        byCategory: {};
+    }>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__ComplaintClient<({
         user: {
             name: string;

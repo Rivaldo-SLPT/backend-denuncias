@@ -29,9 +29,15 @@ let DenunciasController = class DenunciasController {
     findAll(status, category) {
         return this.denunciasService.findAll({ status, category });
     }
+    findByUser(userId) {
+        return this.denunciasService.findByUser(userId);
+    }
     create(createDenunciaDto, req, file) {
         const imageUrl = file ? `/uploads/${file.filename}` : undefined;
         return this.denunciasService.create(createDenunciaDto, req.user.userId, imageUrl);
+    }
+    getStats() {
+        return this.denunciasService.getStats();
     }
     findOne(id) {
         return this.denunciasService.findOne(id);
@@ -52,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], DenunciasController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('usuario/:userId'),
+    __param(0, (0, common_1.Param)('userId', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], DenunciasController.prototype, "findByUser", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
@@ -74,6 +87,12 @@ __decorate([
     __metadata("design:paramtypes", [create_denuncia_dto_1.CreateDenunciaDto, Object, Object]),
     __metadata("design:returntype", void 0)
 ], DenunciasController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)('stats/dashboard'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], DenunciasController.prototype, "getStats", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
