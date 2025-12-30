@@ -6,15 +6,15 @@ export declare class DenunciasController {
     constructor(denunciasService: DenunciasService);
     findAll(status: string, category: string): import(".prisma/client").Prisma.PrismaPromise<({
         user: {
-            name: string;
             email: string;
+            name: string;
         };
     } & {
+        status: string;
+        category: string;
         id: number;
         title: string;
         description: string;
-        category: string;
-        status: string;
         lat: number | null;
         lng: number | null;
         address: string | null;
@@ -24,11 +24,11 @@ export declare class DenunciasController {
     })[]>;
     findByUser(userId: number): Promise<any[]>;
     create(createDenunciaDto: CreateDenunciaDto, req: any, file: Express.Multer.File): import(".prisma/client").Prisma.Prisma__ComplaintClient<{
+        status: string;
+        category: string;
         id: number;
         title: string;
         description: string;
-        category: string;
-        status: string;
         lat: number | null;
         lng: number | null;
         address: string | null;
@@ -43,15 +43,15 @@ export declare class DenunciasController {
     }>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__ComplaintClient<({
         user: {
-            name: string;
             email: string;
+            name: string;
         };
     } & {
+        status: string;
+        category: string;
         id: number;
         title: string;
         description: string;
-        category: string;
-        status: string;
         lat: number | null;
         lng: number | null;
         address: string | null;
@@ -60,11 +60,11 @@ export declare class DenunciasController {
         userId: number;
     }) | null, null, import("@prisma/client/runtime/library").DefaultArgs>;
     updateStatus(id: number, updateStatusDto: UpdateStatusDto, req: any): import(".prisma/client").Prisma.Prisma__ComplaintClient<{
+        status: string;
+        category: string;
         id: number;
         title: string;
         description: string;
-        category: string;
-        status: string;
         lat: number | null;
         lng: number | null;
         address: string | null;
@@ -72,4 +72,17 @@ export declare class DenunciasController {
         createdAt: Date;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    remove(id: number, req: any): Promise<{
+        status: string;
+        category: string;
+        id: number;
+        title: string;
+        description: string;
+        lat: number | null;
+        lng: number | null;
+        address: string | null;
+        imageUrl: string | null;
+        createdAt: Date;
+        userId: number;
+    }>;
 }

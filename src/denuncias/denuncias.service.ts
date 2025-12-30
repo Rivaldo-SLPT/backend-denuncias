@@ -49,6 +49,12 @@ export class DenunciasService {
     });
   }
 
+  remove(id: number) {
+    return this.prisma.complaint.delete({
+      where: { id },
+    });
+  }
+
   async getStats() {
     const total = await this.prisma.complaint.count();
     const byStatus = await this.prisma.complaint.groupBy({

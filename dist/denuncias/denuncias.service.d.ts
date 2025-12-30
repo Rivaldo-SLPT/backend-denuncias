@@ -4,7 +4,6 @@ export declare class DenunciasService {
     private prisma;
     constructor(prisma: PrismaService);
     create(createDenunciaDto: CreateDenunciaDto, userId: number, imageUrl?: string): import(".prisma/client").Prisma.Prisma__ComplaintClient<{
-        id: number;
         title: string;
         description: string;
         category: string;
@@ -14,6 +13,7 @@ export declare class DenunciasService {
         address: string | null;
         imageUrl: string | null;
         createdAt: Date;
+        id: number;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     findByUser(userId: number): Promise<any[]>;
@@ -26,7 +26,6 @@ export declare class DenunciasService {
             email: string;
         };
     } & {
-        id: number;
         title: string;
         description: string;
         category: string;
@@ -36,6 +35,7 @@ export declare class DenunciasService {
         address: string | null;
         imageUrl: string | null;
         createdAt: Date;
+        id: number;
         userId: number;
     })[]>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__ComplaintClient<({
@@ -44,7 +44,6 @@ export declare class DenunciasService {
             email: string;
         };
     } & {
-        id: number;
         title: string;
         description: string;
         category: string;
@@ -54,10 +53,10 @@ export declare class DenunciasService {
         address: string | null;
         imageUrl: string | null;
         createdAt: Date;
+        id: number;
         userId: number;
     }) | null, null, import("@prisma/client/runtime/library").DefaultArgs>;
     updateStatus(id: number, status: string): import(".prisma/client").Prisma.Prisma__ComplaintClient<{
-        id: number;
         title: string;
         description: string;
         category: string;
@@ -67,6 +66,20 @@ export declare class DenunciasService {
         address: string | null;
         imageUrl: string | null;
         createdAt: Date;
+        id: number;
+        userId: number;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    remove(id: number): import(".prisma/client").Prisma.Prisma__ComplaintClient<{
+        title: string;
+        description: string;
+        category: string;
+        status: string;
+        lat: number | null;
+        lng: number | null;
+        address: string | null;
+        imageUrl: string | null;
+        createdAt: Date;
+        id: number;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     getStats(): Promise<{
