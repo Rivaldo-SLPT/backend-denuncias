@@ -4,7 +4,7 @@ import { CreateDenunciaDto } from './dto/create-denuncia.dto';
 
 @Injectable()
 export class DenunciasService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   create(
     createDenunciaDto: CreateDenunciaDto,

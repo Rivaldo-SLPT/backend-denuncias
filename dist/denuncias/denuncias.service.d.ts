@@ -11,6 +11,7 @@ export declare class DenunciasService {
         status: string;
         lat: number | null;
         lng: number | null;
+        address: string | null;
         imageUrl: string | null;
         createdAt: Date;
         userId: number;
@@ -32,6 +33,7 @@ export declare class DenunciasService {
         status: string;
         lat: number | null;
         lng: number | null;
+        address: string | null;
         imageUrl: string | null;
         createdAt: Date;
         userId: number;
@@ -49,6 +51,7 @@ export declare class DenunciasService {
         status: string;
         lat: number | null;
         lng: number | null;
+        address: string | null;
         imageUrl: string | null;
         createdAt: Date;
         userId: number;
@@ -61,6 +64,7 @@ export declare class DenunciasService {
         status: string;
         lat: number | null;
         lng: number | null;
+        address: string | null;
         imageUrl: string | null;
         createdAt: Date;
         userId: number;
